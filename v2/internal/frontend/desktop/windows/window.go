@@ -22,6 +22,7 @@ type Window struct {
 	versionInfo                              *operatingsystem.WindowsVersionInfo
 	isDarkMode                               bool
 	isActive                                 bool
+	hasBeenShown                             bool
 }
 
 func NewWindow(parent winc.Controller, appoptions *options.App, versionInfo *operatingsystem.WindowsVersionInfo) *Window {
@@ -230,5 +231,8 @@ func (w *Window) WndProc(msg uint32, wparam, lparam uintptr) uintptr {
 
 func (w *Window) IsMaximised() bool {
 	return win32.IsWindowMaximised(w.Handle())
+}
 
+func (w *Window) IsMinimised() bool {
+	return win32.IsWindowMinimised(w.Handle())
 }
